@@ -1,0 +1,53 @@
+{% load thumbnail %}
+{% load static %}
+<nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #003688;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+      <img src="{% static 'img/logo.png' %}" width="60" height="60"/>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Наша продукция
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'category' 'TS' %}">Футболки</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'SS' %}">Кофты</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'HT' %}">Головные уборы</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'RG' %}">Рашгарды</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'CR' %}">Шевроны</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'FL' %}">Флаги</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'EQ' %}">Снаряжение с разделением на СМБ и ИСБ</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            О нас
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url "blog" %}">Блог</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url "contact" %}">Контакты</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Доставка и оплата</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Тренировки</a>
+        </li>
+    </div>
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item mx-2">
+        <a href="#" class="nav-link text-white">Заказать звонок</a>
+      </li>
+      <li class="nav-item mx-2">
+        <a href="#" class="nav-link text-white">Корзина</a>
+      </li>
+    </ul>
+  </div>
+</nav>

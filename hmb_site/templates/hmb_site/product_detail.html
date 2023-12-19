@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Сайт ИСБ{% endblock %}
+{% block content %}
+{% load thumbnail %}
+
+    <div class="container">
+        <div class="row flex stify-content-between">
+            <div class="img2 col-lg-5 mt-5">
+                {% thumbnail product.image "350x400" crop="center" upscale=True as im %}
+                <img src="{{ im.url }}" width="300px" height="300px" alt="">
+                {% endthumbnail %}
+            </div>
+            <div class="productdetail col-lg-5">
+                <h1 style="font-family: Georgia; font-size: 50px;">{{ product.title }}</h1>
+                <h5>{{product.price}} Рублей</h5>
+                <br><h4>Описание товара</h4>
+                <ul class="fs-5" style="font-family: Rajdhani;">
+                    <li>{{product.description}}</li>
+                </ul>
+                <div class="buttons row flex" sttyle="font-family: Rajdhani;">
+                    <button type="submit" class="d-grid gap-2 btn1 btn btn-danger p-1 m-1 btn-lg text-decoration-none text-white">Добавить в корзину</button>
+                    <div class="btn btn-dark p-1 m-1 btn-lg">
+                        <a href="#" class="text-decoration-none text-white">Купить сейчас</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
