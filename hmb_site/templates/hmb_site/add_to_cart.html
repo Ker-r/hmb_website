@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Сайт ИСБ{% endblock %}
+{% block content %}
+{% load thumbnail %}
+
+<div class="row">
+    {% if cart %}
+    <h1 class="text-center mb-5">Корзина покупок</h1>
+    <div class="col-sm-8">
+    <div class="card">
+        <div class="card-body">
+            {% for item in cart %}
+            <div class="row">
+                <div class="col-sm-3 text-center align-self-center">
+                    {% thumbnail item.product.image "350x400" crop="center" upscale=True as im %}
+                    <img src="{{ im.url }}" width="150px" height="150px" />
+                    {% endthumbnail %}
+                </div>
+                <div class="col-sm-9">
+                    <div>
+                    <h5>{{item.product.title}}</h5>
+                    <p class="mb-2 text-muted small">{{ item.product.description }}</p>
+                    <div class="my-3">
+                        <label for="quantity">Количество</label>
+                        <a class="minus-cart btn" pid={{ item.product.id }}><i class="fas fa-minus-square fa-lg"></i></a>
+                        <span id="quantity">{{item.quantity}}</span>
+                        <a class="plus-cart btn" pid={{ item.product.id}}><i class="fas fa-plus-square fa-lg"></i></a>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <a href="#" class="remove-cart btn btn-sm btn-secondary mr-3" pid={{item.product.id}}>Удалить элемент</a>
+                        <p class="mb-0"><span><strong>{{item.product.price}} Рублей</strong></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="text-muted">
+        {% endfor %}
+    </div>
+    </div>
+</div>
+
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+                <h3>Общая сумма</h3>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">Сумма<span id="amount">{{amount}} Рублей</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">Доставка<span>100 Рублей</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                        <div>
+                            <strong>Сумма</strong> <small>(including GST)</small>
+                        </div>
+                        <span id="totalamount"><strong>{{totalamount}} Рублей</strong></span>
+                    </li>
+                </ul>
+                <div class="d-grid"><a href="{% url "checkout" %}" class="btn btn-primary">Оформить заказ</a></div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+        <h1 class="text-center mb-5">Корзина пуста</h1>
+    {% endif %}
+    </div>
+</div>
+
+{% endblock %}

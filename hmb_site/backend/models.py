@@ -4,7 +4,7 @@ from django.db import models
 from django.urls import reverse
 
 
-CATEGORY_CHOICES=(
+CATEGORY_CHOICES = (
     ('TS', 'Футболки'),
     ('SS', 'Кофты'),
     ('HT', 'Головные уборы'),
@@ -50,3 +50,17 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
+
+
+class Cart(models.Model):
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE
+    )
+    quantity = models.PositiveIntegerField(
+        default=1
+    )
+
+    @property
+    def total_cost(self):
+        return self.quantity * self.product.price

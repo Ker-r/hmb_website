@@ -10,4 +10,3 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ('title', 'category', )
     # Это свойство сработает для всех колонок: где пусто — там будет эта строка
     empty_value_display = '-пусто-'
-
