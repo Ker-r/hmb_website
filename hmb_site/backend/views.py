@@ -2,7 +2,6 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views import View
 from .models import Product, Cart
-from django.db.models import Q
 
 
 def home(request):
@@ -27,7 +26,8 @@ class CategoryView(View):
 class CategoryTitle(View):
     def get(self, request, val):
         product = Product.objects.filter(title=val)
-        title = Product.objects.filter(category=product[0].category).values('title')
+        title = Product.objects.filter(
+            category=product[0].category).values('title')
         return render(request, 'hmb_site/category.html', locals())
 
 
@@ -110,3 +110,11 @@ def remove_cart(request):
             'totalamount': totalamount,
         }
         return JsonResponse(data)
+
+
+def delivery(request):
+    return render(request, 'hmb_site/delivery.html')
+
+
+def workout(request):
+    return render(request, 'hmb_site/workout.html')

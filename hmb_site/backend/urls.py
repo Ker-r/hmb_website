@@ -16,4 +16,6 @@ urlpatterns = [
     path('pluscart/', views.plus_cart),
     path('minuscart/', views.minus_cart),
     path('removecart/', views.remove_cart),
+    path('delivery/', views.delivery, name='delivery'),
+    path('workout/', views.workout, name='workout'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
