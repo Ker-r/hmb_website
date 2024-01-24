@@ -1,7 +1,8 @@
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views import View
-from .models import Product, Cart
+from django.views.generic import ListView
+from .models import Product, Cart, News
 
 
 def home(request):
@@ -118,3 +119,11 @@ def delivery(request):
 
 def workout(request):
     return render(request, 'hmb_site/workout.html')
+
+
+class NewsView(ListView):
+    ''' Страница новостей '''
+    paginate_by = 3
+    model = News
+    template_name = 'hmb_site/news.html'
+    context_object_name = 'news'

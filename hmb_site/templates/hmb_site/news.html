@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Сайт ИСБ{% endblock %}
+{% block content %}
+{% load thumbnail %}
+
+<link type="text/css" href="{% static 'css/news.css' %}" rel="stylesheet" />
+<div class="container mt-3">
+    <br>
+    <h2 class="text-center">Наши новости</h2>
+    {% for new in news %}
+        <div class="container">
+            <div class="new">
+                <div class="new-header">
+                    <h1>{{ new.title }}</h1>
+                    <div class="new-meta">
+                        <time datetime="2019-04-01">{{ new.pub_date|date:"d E Y" }}</time>
+                    </div>
+                </div>
+                <div class="new-image">
+                    {% thumbnail new.image "400x400" crop="center" upscale=True as im %}    
+                    <img src="{{ im.url }}" width="500px" height="500px" alt="">
+                    {% endthumbnail %}
+                </div>
+                <div class="new-content">
+                    <p>{{ new.description }}</p>                
+                </div>
+            </div>
+        </div>
+        <hr class="featurette-divider">
+    {% endfor %} 
+</div>
+<br><br>
+
+{% endblock %}
