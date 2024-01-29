@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import ListView
 from .models import Product, Cart, News
+from .forms import SizeAddProductForm
 
 
 def home(request):
@@ -35,7 +36,9 @@ class CategoryTitle(View):
 class ProductDetail(View):
     def get(self, request, pk):
         product = Product.objects.get(pk=pk)
-        return render(request, 'hmb_site/product_detail.html', locals())
+        return render(
+            request, 'hmb_site/product_detail.html', locals()
+        )
 
 
 def add_to_cart(request):
@@ -52,6 +55,7 @@ def show_cart(request):
         value = p.quantity * p.product.price
         amount = amount + value
     totalamount = amount + 100
+    form = SizeAddProductForm()
     return render(request, 'hmb_site/add_to_cart.html', locals())
 
 
@@ -127,3 +131,6 @@ class NewsView(ListView):
     model = News
     template_name = 'hmb_site/news.html'
     context_object_name = 'news'
+
+    def get_queryset(self):
+        return News.objects.order_by('-pub_date')

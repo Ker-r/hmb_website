@@ -15,6 +15,17 @@ CATEGORY_CHOICES = (
 )
 
 
+SIZE_CHOICES = (
+    ('XS', 'XS'),
+    ('S', 'S'),
+    ('M', 'M'),
+    ('L', 'L'),
+    ('XL', 'XL'),
+    ('2XL', '2XL'),
+    ('3XL', '3XL'),
+)
+
+
 class Product(models.Model):
     title = models.CharField(
         'Название товара',
@@ -30,6 +41,12 @@ class Product(models.Model):
         'Категория',
         choices=CATEGORY_CHOICES,
         max_length=2
+    )
+    size = models.CharField(
+        'Размер',
+        choices=SIZE_CHOICES,
+        max_length=3,
+        blank=True
     )
     pub_date = models.DateTimeField(
         'Дата публикации',

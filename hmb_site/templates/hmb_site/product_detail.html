@@ -22,7 +22,7 @@
                     <input type="hidden" name="prod_id" value={{product.id}} />
                     <button type="submit" class="btn btn-primary shadow px-5 py-2">Добавить в корзину</button>
                 </form>
-                <a href="{% url "showcart" %}" class="btn btn-warning shadow px-5 py-2 ms-4">Купить сейчас</a>
+                {% comment %} <a href="{% url "showcart" %}" class="btn btn-warning shadow px-5 py-2 ms-4">Купить сейчас</a> {% endcomment %}
                 </div>
             </div>
         </div>
